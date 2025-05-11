@@ -86,18 +86,6 @@ Rename `.env.local.template` ->  `.env.local`
 `cd storefront/`
 `npm run dev` or `pnpm dev` will run the storefront on uncompiled code, with hot-reloading as files are saved with changes.
 
-## Useful resources
-- How to setup credit card payment with Stripe payment module: https://youtu.be/dcSOpIzc1Og
-- https://funkyton.com/medusajs-2-0-is-finally-here/#succuessfully-deployed-whats-next
+
   
-<p align="center">
-  <a href="https://funkyton.com/">
-    <div style="text-align: center;">
-      A template by,
-      <br>
-      <picture>
-        <img alt="FUNKYTON logo" src="https://res-5.cloudinary.com/hczpmiapo/image/upload/q_auto/v1/ghost-blog-images/funkyton-logo.png" width=200>
-      </picture>
-    </div>
-  </a>
-</p>
+
