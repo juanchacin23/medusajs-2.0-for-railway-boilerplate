@@ -24,6 +24,14 @@ const nextConfig = {
         protocol: process.env.NEXT_PUBLIC_BASE_URL?.startsWith('https') ? 'https' : 'http',
         hostname: process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ''),
       },
+
+      {
+        protocol: "https",
+        hostname: "bucket-production-f8f9.up.railway.app",
+        pathname: "/medusa-media/**",
+      },
+
+
       { // Note: only needed when using local-file for product media
         protocol: "https",
         hostname: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL?.replace('https://', ''),
