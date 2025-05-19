@@ -10,7 +10,6 @@ import ChannelSelector from "./components/ChannelSelector";
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
-  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL!;
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -28,13 +27,7 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-                <img
-                  src={logoUrl}
-                  alt="Deuce"
-                  width={200}      // ajusta al tamaño que necesites
-                  height={40}
-                  priority         // si quieres que cargue de inmediato
-                />
+                
             </LocalizedClientLink>
           </div>
 
