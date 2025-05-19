@@ -5,11 +5,12 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
-import ChannelSelector from "./components/ChannelSelector";
+import Image from "next/image"
 
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
+  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL!;
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -27,7 +28,13 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-                
+                <Image
+                  src={logoUrl}
+                  alt="Deuce"
+                  width={200}      // ajusta al tamaño que necesites
+                  height={40}
+                  priority         // si quieres que cargue de inmediato
+                />
             </LocalizedClientLink>
           </div>
 
@@ -35,7 +42,6 @@ export default async function Nav() {
             <div className="hidden small:flex items-center gap-x-6 h-full">
               
               
-              <ChannelSelector/>
               
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (

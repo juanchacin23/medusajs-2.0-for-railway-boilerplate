@@ -1,6 +1,7 @@
 import { getCategoriesList } from "@lib/data/categories"
 import { getCollectionsList } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
+import Image from "next/image"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
@@ -8,6 +9,7 @@ import MedusaCTA from "@modules/layout/components/medusa-cta"
 export default async function Footer() {
   const { collections } = await getCollectionsList(0, 6)
   const { product_categories } = await getCategoriesList(0, 6)
+  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL!
 
   return (
     <footer className="border-t border-ui-border-base w-full">
@@ -18,7 +20,13 @@ export default async function Footer() {
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
-                
+                <Image
+                  src={logoUrl}
+                  alt="Deuce"
+                  width={200}      // ajusta al tamaño que necesites
+                  height={40}
+                  priority         // si quieres que cargue de inmediato
+                />
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
