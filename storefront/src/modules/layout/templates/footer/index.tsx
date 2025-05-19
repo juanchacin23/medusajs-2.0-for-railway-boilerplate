@@ -1,7 +1,6 @@
 import { getCategoriesList } from "@lib/data/categories"
 import { getCollectionsList } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
-import Image from "next/image"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
@@ -20,12 +19,12 @@ export default async function Footer() {
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
-                <Image
+                <img
                   src={logoUrl}
                   alt="Deuce"
                   width={200}      // ajusta al tamaño que necesites
                   height={40}
-                  priority         // si quieres que cargue de inmediato
+                  
                 />
             </LocalizedClientLink>
           </div>
