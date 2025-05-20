@@ -1,38 +1,42 @@
 'use client'
 // components/CitySwitcher.tsx
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useMemo } from 'react'
 
-const options = [
-  { label: 'Maracaibo', url: 'https://storefront-maracaibo-production.up.railway.app' },
-  { label: 'Caracas', url: 'https://storefront-caracas-production.up.railway.app' },
-]
+
+type City = 'caracas' | 'maracaibo'
+const CITY_PATTERN = /^storefront-([^.-]+)-production/
 
 export default function CitySwitcher() {
-  const host = typeof window !== 'undefined' ? window.location.host : ''
-  const defaultOption = options.find(o => {
-    try {
-      return new URL(o.url).host === host
-    } catch {
-      return false
-    }
-  })
-  const initialUrl = defaultOption?.url || options[0].url
+   // 1) Extraemos la ciudad de window.location.host
+  const inferredCity = useMemo<City>(() => {
+    if (typeof window === 'undefined') return 'caracas'
+    const host = window.location.host    // e.g. "storefront-caracas-production.up.railway.app"
+    const m = host.match(CITY_PATTERN)
+    // m[1] será "caracas" o "maracaibo", si coincide
+    return (m?.[1] as City) || 'caracas'
+  }, [])
 
-  const [selectedUrl, setSelectedUrl] = useState<string>(initialUrl)
+  // 2) Estado controlado
+  const [city, setCity] = useState<City>(inferredCity)
+
+  // 3) URLs fijas por ciudad
+  const urls: Record<City,string> = {
+    caracas:   'https://storefront-caracas-production.up.railway.app',
+    maracaibo: 'https://storefront-maracaibo-production.up.railway.app',
+  }
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedUrl(e.target.value)
-    window.location.href = e.target.value
+    const newCity = e.target.value as City
+    setCity(newCity)
+    // redirijo al deploy correspondiente
+    window.location.href = urls[newCity]
   }
 
 
   return (
-    <select defaultValue={selectedUrl} onChange={onChange}>
-      {options.map(({ label, url }) => (
-        <option key={url} value={url}>
-          {label}
-        </option>
-      ))}
+    <select value={city} onChange={onChange}>
+      <option value="caracas">Caracas</option>
+      <option value="maracaibo">Maracaibo</option>
     </select>
   )
 }
