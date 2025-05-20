@@ -1,35 +1,37 @@
 'use client'
 // components/CitySwitcher.tsx
-import { useState, ChangeEvent, useMemo } from 'react'
+import { useState, useEffect, ChangeEvent  } from 'react'
 
 
 type City = 'caracas' | 'maracaibo'
-const CITY_PATTERN = /^storefront-([^.-]+)-production/
+
+
+const URLS: Record<City,string> = {
+  caracas:   'https://storefront-caracas-production.up.railway.app',
+  maracaibo: 'https://storefront-maracaibo-production.up.railway.app',
+}
 
 export default function CitySwitcher() {
    // 1) Extraemos la ciudad de window.location.host
-  const inferredCity = useMemo<City>(() => {
-    if (typeof window === 'undefined') return 'caracas'
-    const host = window.location.host    // e.g. "storefront-caracas-production.up.railway.app"
-    const m = host.match(CITY_PATTERN)
-    // m[1] será "caracas" o "maracaibo", si coincide
-    return (m?.[1] as City) || 'caracas'
+   const [city, setCity] = useState<City>('caracas')
+
+  // Detectamos la ciudad *en el cliente* al montar
+  useEffect(() => {
+    const hostname = window.location.hostname 
+    // ej: "storefront-caracas-production.up.railway.app"
+    const sub = hostname.split('.')[0] 
+    // "storefront-caracas-production"
+    const parts = sub.split('-') 
+    // ["storefront","caracas","production"]
+    const detected = parts[1] as City
+
+    setCity(detected === 'maracaibo' ? 'maracaibo' : 'caracas')
   }, [])
-
-  // 2) Estado controlado
-  const [city, setCity] = useState<City>(inferredCity)
-
-  // 3) URLs fijas por ciudad
-  const urls: Record<City,string> = {
-    caracas:   'https://storefront-caracas-production.up.railway.app',
-    maracaibo: 'https://storefront-maracaibo-production.up.railway.app',
-  }
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newCity = e.target.value as City
-    setCity(newCity)
-    // redirijo al deploy correspondiente
-    window.location.href = urls[newCity]
+    // redirigimos al deploy correspondiente
+    window.location.href = URLS[newCity]
   }
 
 
