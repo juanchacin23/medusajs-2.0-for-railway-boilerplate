@@ -1,6 +1,6 @@
 'use client'
 // components/CitySwitcher.tsx
-import { ChangeEvent } from 'react'
+import { useState, ChangeEvent } from 'react'
 
 const options = [
   { label: 'Maracaibo', url: 'https://storefront-maracaibo-production.up.railway.app' },
@@ -8,16 +8,26 @@ const options = [
 ]
 
 export default function CitySwitcher() {
-  // Determina cuál option debe salir seleccionado al montar
-  const currentOrigin = typeof window !== 'undefined' ? window.location.origin : ''
-  const defaultUrl = options.find(o => currentOrigin.startsWith(o.url))?.url || options[0].url
+  const host = typeof window !== 'undefined' ? window.location.host : ''
+  const defaultOption = options.find(o => {
+    try {
+      return new URL(o.url).host === host
+    } catch {
+      return false
+    }
+  })
+  const initialUrl = defaultOption?.url || options[0].url
+
+  const [selectedUrl, setSelectedUrl] = useState<string>(initialUrl)
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUrl(e.target.value)
     window.location.href = e.target.value
   }
 
+
   return (
-    <select defaultValue={defaultUrl} onChange={onChange}>
+    <select defaultValue={selectedUrl} onChange={onChange}>
       {options.map(({ label, url }) => (
         <option key={url} value={url}>
           {label}
