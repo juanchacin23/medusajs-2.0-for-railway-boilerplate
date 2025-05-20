@@ -1,6 +1,8 @@
 'use client'
 // components/CitySwitcher.tsx
 import { useState, useEffect, ChangeEvent  } from 'react'
+import { Select } from "@medusajs/ui"
+
 
 
 type City = 'caracas' | 'maracaibo'
@@ -28,17 +30,27 @@ export default function CitySwitcher() {
     setCity(detected === 'maracaibo' ? 'maracaibo' : 'caracas')
   }, [])
 
-  const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newCity = e.target.value as City
+  const onValueChange = (newCity: string) => {
+    const c = newCity as City
+    setCity(c)
     // redirigimos al deploy correspondiente
-    window.location.href = URLS[newCity]
+    window.location.href = URLS[c]
   }
 
 
   return (
-    <select value={city} onChange={onChange}>
-      <option value="caracas">Caracas</option>
-      <option value="maracaibo">Maracaibo</option>
-    </select>
+  <>
+    
+
+    <Select value={city} onValueChange={onValueChange}>
+      <Select.Trigger>
+        <Select.Value placeholder="Ciudad" />
+      </Select.Trigger>
+      <Select.Content className='z-50'>
+        <Select.Item value="caracas">Caracas</Select.Item>
+        <Select.Item value="maracaibo">Maracaibo</Select.Item>
+      </Select.Content>
+    </Select>
+  </>
   )
 }

@@ -8,13 +8,14 @@ import { Fragment } from "react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CountrySelect from "../country-select"
 import { HttpTypes } from "@medusajs/types"
+import CitySwitcher from "../../../layout/templates/nav/components/CitySwitcher";
 
 const SideMenuItems = {
-  Home: "/",
-  Store: "/store",
-  Search: "/search",
-  Account: "/account",
-  Cart: "/cart",
+  Inicio: "/",
+  Tienda: "/store",
+  Buscar: "/search",
+  Cuenta: "/account",
+  Carrito: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
@@ -70,6 +71,9 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                           </li>
                         )
                       })}
+                      <li>
+                        <CitySwitcher />
+                      </li>
                     </ul>
                     <div className="flex flex-col gap-y-6">
                       <div
