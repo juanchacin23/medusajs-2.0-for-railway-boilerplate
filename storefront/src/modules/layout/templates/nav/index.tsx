@@ -6,6 +6,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import Image from "next/image"
+import CitySwitcher from "./components/CitySwitcher";
 
 
 export default async function Nav() {
@@ -42,6 +43,7 @@ export default async function Nav() {
             <div className="hidden small:flex items-center gap-x-6 h-full">
               
               
+              <CitySwitcher/>
               
 
               {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
