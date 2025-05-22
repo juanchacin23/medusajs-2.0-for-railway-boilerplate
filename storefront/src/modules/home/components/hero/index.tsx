@@ -1,28 +1,116 @@
-import { Github } from "@medusajs/icons"
-import { Button, Heading } from "@medusajs/ui"
+'use client'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
-const Hero = () => {
+type Item = { 
+  thumb: string; 
+  full: string;
+  thumbClasses: string  // tamaño/ratio de cada thumb
+  fullClasses?:  string // *opcional* si quieres controlar el tamaño del full
+  positionClasses: string   // top, left, rotate, z-index…
+  }
+
+export default function Hero() {
+  const items: Item[] = [
+    {
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-agustin-tapia.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-agustin-tapia-image-home.svg',
+      thumbClasses:  'xl:w-[42%] xl:h-auto w-[30%] h-auto',      // pala: 48×36
+      fullClasses:   'w-80 h-60',      // opcional: full más grande
+      positionClasses: 'absolute bottom-[0%] left-[27%] rotate-[0deg] z-10',
+    },
+    {
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso-full.svg',
+      thumbClasses:  'xl:w-[35%] xl:h-auto w-[30%] h-auto',      // bolso: 64×48
+      fullClasses:   'w-96 h-72',      // full aún más grande
+      positionClasses: 'absolute top-[7%] rotate-[0deg] z-20',
+
+    },
+    {
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-figura.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelotaa-full.svg',
+      thumbClasses:  'xl:w-[34%] xl:h-48 w-[30%] h-auto',      // bolso: 64×48
+      fullClasses:   'w-96 h-72',      // full aún más grande
+      positionClasses: 'absolute top-[2%] left-[26%]  rotate-[0deg] z-20',
+
+    },
+    {
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-grama-figura.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-gramaa-full.svg',
+      thumbClasses:  'xl:w-[40%] xl:h-auto w-[30%] h-auto',      // bolso: 64×48
+      fullClasses:   'w-96 h-72',      // full aún más grande
+      positionClasses: 'absolute top-[0%] right-[5%] rotate-[0deg] z-20',
+
+    },
+    {
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-figura.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-full.svg',
+      thumbClasses:  'xl:w-[35%] xl:h-auto w-[30%] h-auto',      // bolso: 64×48
+      fullClasses:   'w-96 h-72',      // full aún más grande
+      positionClasses: 'absolute bottom-[1%] right-[5%]  rotate-[0deg] z-20',
+
+    },
+    
+  ]
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
-        <span>
-          <Heading
-            level="h1"
-            className="text-3xl leading-10 text-ui-fg-base font-normal"
+    <div
+      className="xl:h-[75vh] lg:h-[58vh] lg:w-[110vh] xl:w-full border-b border-ui-bg-subtle relative bg-grey-5 mt-12"
+      onMouseLeave={() => setHoveredIndex(null)}
+    >
+      {/* Thumbnails */}
+      
+        {items.map((item, i) => (
+          <motion.div
+            key={i}
+            onMouseEnter={() => setHoveredIndex(i)}
+            className={`overflow-hidden z-10 ${item.thumbClasses} ${item.positionClasses}`}
           >
-            Deuce ecommerce
-          </Heading>
-          <Heading
-            level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
+            <motion.img
+              src={item.thumb}
+              alt={`thumb ${i}`}
+              className="w-full h-full object-cover"
+              animate={{
+                opacity: hoveredIndex === i ? 0 : 1,
+                scale:   hoveredIndex === i ? 1.1 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        ))}
+      
+
+      {/* Full previews */}
+      <AnimatePresence>
+        {hoveredIndex !== null && (
+          <motion.div
+            key="full-container"
+            className="absolute inset-0 z-20 bg-black"
+            initial={{ opacity: 0, scale: 0.75 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit   ={ { opacity: 0, scale: 0.75 }}
+            transition={{ duration: 0.3 }}
           >
-            subheading
-          </Heading>
-        </span>
-        
-      </div>
+            <img
+              src={items[hoveredIndex].full}
+              alt="full preview"
+              className="w-full h-full object-contain"
+            />
+
+            <div className="absolute bottom-4 right-0 transform -translate-x-1/2 flex gap-2">
+              <button className="px-4 py-2 bg-white rounded shadow">
+                Ver detalle
+              </button>
+              <button className="px-4 py-2 bg-white rounded shadow">
+                Comprar
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
-
-export default Hero
