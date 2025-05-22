@@ -58,7 +58,7 @@ export default function Hero() {
 
   return (
     <div
-      className="xl:h-[75vh] lg:h-[58vh] lg:w-[110vh] xl:w-full border-b border-ui-bg-subtle relative bg-grey-5 mt-12"
+      className="h-[75vh] w-full border-b border-ui-bg-subtle relative bg-grey-5 mt-12"
       onMouseLeave={() => setHoveredIndex(null)}
     >
       {/* Thumbnails */}
