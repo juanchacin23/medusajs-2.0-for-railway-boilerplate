@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import Image from 'next/image'
 
 
 type Item = { 
@@ -14,42 +15,42 @@ type Item = {
 export default function Hero() {
   const items: Item[] = [
     {
-      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-agustin-tapia.png',
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-agustin-tapia.webp',
       full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-agustin-tapia-image-home.svg',
-      thumbClasses:  'w-[42%] xl:h-auto h-auto',      // pala: 48×36
+      thumbClasses:  'w-[46%] sm:w-[42%] xl:h-auto h-auto',      // pala: 48×36
       fullClasses:   'w-80 h-60',      // opcional: full más grande
-      positionClasses: 'absolute bottom-[0%] left-[27%] rotate-[0deg] z-10',
+      positionClasses: 'absolute bottom-[0%] xl:bottom-[3%] left-[27%] sm:left-[30%] rotate-[0deg] z-10',
     },
     {
-      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso.png',
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso.webp',
       full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso-full.svg',
-      thumbClasses:  'w-[35%] xl:h-auto h-auto',      // bolso: 64×48
+      thumbClasses:  'w-[36%] sm:w-[35%] lg:w-[35%] xl:w-[31%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
-      positionClasses: 'absolute top-[7%] rotate-[0deg] z-20',
+      positionClasses: 'absolute left-[0%] sm:left-[2%] xl:left-[5%] bottom-[0%] md:top-[7%] rotate-[0deg] z-20',
 
     },
     {
-      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-figura.png',
-      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelotaa-full.svg',
-      thumbClasses:  'w-[34%] xl:h-48 h-auto',      // bolso: 64×48
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-figura.webp',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-full.png',
+      thumbClasses:  'w-[40%] md:w-[36%] xl:h-48 h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
-      positionClasses: 'absolute top-[-2%] lg:top-[0%] xl:top-[2%] left-[26%]  rotate-[0deg] z-20',
+      positionClasses: 'absolute top-[16%] sm:top-[-1%] md:top-[-4%] md:left-[30%] xl:left-[29%] lg:top-[-4%] xl:top-[4%] left-[26%]   rotate-[0deg] z-20',
 
     },
     {
-      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-grama-figura.png',
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-grama-figura.webp',
       full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-gramaa-full.svg',
       thumbClasses:  'w-[40%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
-      positionClasses: 'absolute top-[0%] right-[5%] rotate-[0deg] z-20',
+      positionClasses: 'absolute top-[20%] sm:top-[6%] right-[0%] sm:right-[2%] md:top-[0%] xl:md:top-[3%] lg:right-[2%] rotate-[0deg] z-20',
 
     },
     {
-      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-figura.png',
+      thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-figura.webp',
       full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-full.svg',
-      thumbClasses:  'w-[35%] xl:h-auto h-auto',      // bolso: 64×48
+      thumbClasses:  'w-[38%] sm:w-[35%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
-      positionClasses: 'absolute bottom-[1%] right-[5%]  rotate-[0deg] z-20',
+      positionClasses: 'absolute bottom-[0%] lg:bottom-[2%] right-[0%] sm:right-[2%] rotate-[0deg] z-20',
 
     },
     
@@ -59,7 +60,7 @@ export default function Hero() {
 
   return (
     <div
-      className="md:h-[41vh] lg:h-[53vh] xl:h-[75vh] h-[20vh] w-full border-b border-ui-bg-subtle relative bg-grey-5 mt-12"
+      className="sm:h-[300px] md:h-[350px] lg:h-[450px] xl:h-[570px] h-48 xl:max-w-[1280px] container mx-auto px-4 w-full border-b border-ui-bg-subtle relative bg-grey-5 mt-12"
       onMouseLeave={() => setHoveredIndex(null)}
     >
       {/* Thumbnails */}
@@ -68,7 +69,7 @@ export default function Hero() {
           <motion.div
             key={i}
             onMouseEnter={() => setHoveredIndex(i)}
-            className={`overflow-hidden z-10 ${item.thumbClasses} ${item.positionClasses}`}
+            className={`overflow-hidden  z-10 ${item.thumbClasses} ${item.positionClasses}`}
           >
             <motion.img
               src={item.thumb}
@@ -89,16 +90,18 @@ export default function Hero() {
         {hoveredIndex !== null && (
           <motion.div
             key="full-container"
-            className="absolute inset-0 z-20 bg-black"
+            className="absolute inset-0 z-20 bg-black rounded-md"
             initial={{ opacity: 0, scale: 0.75 }}
             animate={{ opacity: 1, scale: 1 }}
             exit   ={ { opacity: 0, scale: 0.75 }}
             transition={{ duration: 0.3 }}
           >
-            <img
+            <Image
               src={items[hoveredIndex].full}
               alt="full preview"
-              className="w-full h-full object-contain"
+              fill
+              className="w-full h-full object-fill rounded-md"
+              priority={false}
             />
 
             <div className="absolute bottom-4 right-0 transform -translate-x-1/2 flex gap-2">
