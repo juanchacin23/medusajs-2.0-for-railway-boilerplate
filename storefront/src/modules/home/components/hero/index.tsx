@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
+
 type Item = { 
   thumb: string; 
   full: string;
