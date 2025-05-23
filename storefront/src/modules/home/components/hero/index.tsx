@@ -67,7 +67,7 @@ export default function Hero() {
           <motion.div
             key={i}
             onMouseEnter={() => setHoveredIndex(i)}
-            className={`overflow-hidden z-10 border-2 border-black ${item.thumbClasses} ${item.positionClasses}`}
+            className={`overflow-hidden z-10 ${item.thumbClasses} ${item.positionClasses}`}
           >
             <motion.img
               src={item.thumb}
