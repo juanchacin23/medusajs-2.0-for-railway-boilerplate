@@ -7,36 +7,32 @@ import { Select } from "@medusajs/ui"
 
 type City = 'caracas' | 'maracaibo'
 
+const BASE = process.env.NEXT_PUBLIC_BASE_URL! 
 
-const URLS: Record<City,string> = {
-  caracas:   'https://storefront-caracas-production.up.railway.app',
-  maracaibo: 'https://storefront-maracaibo-production.up.railway.app',
-}
+// 2) extrae la ciudad actual del host
+const currentCity = ((): City => {
+  try {
+    const h = new URL(BASE).hostname.split('.')[0]
+    return (h === 'maracaibo' ? 'maracaibo' : 'caracas')
+  } catch {
+    return 'caracas'
+  }
+})()
+
+
+// 3) construye la “ciudad opuesta”
+const otherCity: City = currentCity === 'caracas' ? 'maracaibo' : 'caracas'
+const OTHER_BASE = BASE.replace(currentCity, otherCity)
 
 export default function CitySwitcher() {
-   // 1) Extraemos la ciudad de window.location.host
-   const [city, setCity] = useState<City>('caracas')
+  const [city, setCity] = useState<City>(currentCity)
 
-  // Detectamos la ciudad *en el cliente* al montar
-  useEffect(() => {
-    const hostname = window.location.hostname 
-    // ej: "storefront-caracas-production.up.railway.app"
-    const sub = hostname.split('.')[0] 
-    // "storefront-caracas-production"
-    const parts = sub.split('-') 
-    // ["storefront","caracas","production"]
-    const detected = parts[1] as City
-
-    setCity(detected === 'maracaibo' ? 'maracaibo' : 'caracas')
-  }, [])
-
-  const onValueChange = (newCity: string) => {
-    const c = newCity as City
-    setCity(c)
-    // redirigimos al deploy correspondiente
-    window.location.href = URLS[c]
+  const onValueChange = (c: City) => {
+    // si selecciona la misma no hacemos nada
+    if (c === city) return
+    // redirige usando env o el derivado
+    window.location.href = c === currentCity ? BASE : OTHER_BASE
   }
-
 
   return (
   <>
