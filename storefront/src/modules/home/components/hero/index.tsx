@@ -23,7 +23,7 @@ export default function Hero() {
     },
     {
       thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso.webp',
-      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso-full.svg',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/chica-bolso-full.png',
       thumbClasses:  'w-[36%] sm:w-[35%] lg:w-[35%] xl:w-[31%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
       positionClasses: 'absolute left-[0%] sm:left-[2%] xl:left-[5%] bottom-[0%] md:top-[7%] rotate-[0deg] z-20',
@@ -31,7 +31,7 @@ export default function Hero() {
     },
     {
       thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-figura.webp',
-      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-full.png',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-full-.png',
       thumbClasses:  'w-[40%] md:w-[36%] xl:h-48 h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
       positionClasses: 'absolute top-[16%] sm:top-[-1%] md:top-[-4%] md:left-[30%] xl:left-[29%] lg:top-[-4%] xl:top-[4%] left-[26%]   rotate-[0deg] z-20',
@@ -39,7 +39,7 @@ export default function Hero() {
     },
     {
       thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-grama-figura.webp',
-      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-gramaa-full.svg',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/pala-pelota-grama-full.png',
       thumbClasses:  'w-[40%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
       positionClasses: 'absolute top-[20%] sm:top-[6%] right-[0%] sm:right-[2%] md:top-[0%] xl:md:top-[3%] lg:right-[2%] rotate-[0deg] z-20',
@@ -47,7 +47,7 @@ export default function Hero() {
     },
     {
       thumb:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-figura.webp',
-      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-full.svg',
+      full:'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/jugador-padel-full.png',
       thumbClasses:  'w-[38%] sm:w-[35%] xl:h-auto h-auto',      // bolso: 64×48
       fullClasses:   'w-96 h-72',      // full aún más grande
       positionClasses: 'absolute bottom-[0%] lg:bottom-[2%] right-[0%] sm:right-[2%] rotate-[0deg] z-20',
