@@ -4,6 +4,7 @@ import { Popover, Transition } from "@headlessui/react"
 import { Button } from "@medusajs/ui"
 import { usePathname } from "next/navigation"
 import { Fragment, useEffect, useRef, useState } from "react"
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
@@ -78,10 +79,22 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className="hover:text-ui-fg-base relative"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+            
+          >
+            
+              <HiOutlineShoppingBag size={20}/>
+              <span className="absolute top-[-3px] right-0 transform 
+              translate-x-1/2 -translate-y-1/2 
+              bg-red-500 text-white
+              text-xs
+              rounded-full px-1 py-0.5">
+                {totalItems}
+              </span>
+            
+          </LocalizedClientLink>
         </Popover.Button>
         <Transition
           show={cartDropdownOpen}
