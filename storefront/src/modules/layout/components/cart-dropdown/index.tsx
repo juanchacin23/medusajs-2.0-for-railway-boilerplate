@@ -86,13 +86,18 @@ const CartDropdown = ({
           >
             
               <HiOutlineShoppingBag size={20}/>
+
+            {totalItems > 0 && (
+
               <span className="absolute top-[-3px] right-0 transform 
               translate-x-1/2 -translate-y-1/2 
               bg-red-500 text-white
               text-xs
               rounded-full px-1 py-0.5">
                 {totalItems}
-              </span>
+              </span> 
+              
+            )}
             
           </LocalizedClientLink>
         </Popover.Button>
