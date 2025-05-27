@@ -85,15 +85,15 @@ const CartDropdown = ({
             
           >
             
-              <HiOutlineShoppingBag size={17}/>
+              <HiOutlineShoppingBag size={17} className="z-10"/>
 
             {totalItems > 0 && (
 
-              <span className="absolute top-0 right-0 transform 
+              <span className="absolute top-0.5 right-0 transform 
               translate-x-1/2 -translate-y-1/2 
               bg-red-500 text-white
               text-xs
-              rounded-full px-1 py-0.5 z-10">
+              rounded-full px-1 py-0.5 z-20">
                 {totalItems}
               </span> 
               
