@@ -116,7 +116,7 @@ export default function ProductActions({
     try {
       await addToCart({
         variantId: selectedVariant.id,
-        quantity: 1,
+        quantity: desiredQty,
         countryCode,
       })
     } catch (err: any) {
