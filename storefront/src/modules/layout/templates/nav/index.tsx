@@ -7,6 +7,7 @@ import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import Image from "next/image"
 import CitySwitcher from "./components/CitySwitcher";
+import { MagnifyingGlass, User } from "@medusajs/icons"
 
 
 export default async function Nav() {
@@ -39,7 +40,31 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+          <div className="flex items-center lg:gap-x-6 h-full flex-1 basis-0 justify-end">
+
+             {/* ICONOS: visibles en <lg */}
+            <div className="flex lg:hidden">
+              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
+                <LocalizedClientLink
+                  href="/search"
+                  aria-label="Buscar"
+                  className="hover:text-ui-fg-base"
+                  data-testid="nav-search-link"
+                >
+                  <MagnifyingGlass className="mr-1.5"/>
+                </LocalizedClientLink>
+              )}
+              <LocalizedClientLink
+                href="/account"
+                aria-label="Cuenta"
+                className="hover:text-ui-fg-base"
+                data-testid="nav-account-link"
+              >
+                <User className="mr-1.5"/>
+              </LocalizedClientLink>
+            </div>
+
+
             <div className="hidden small:flex items-center gap-x-6 h-full">
               
               
@@ -52,6 +77,7 @@ export default async function Nav() {
                   href="/search"
                   scroll={false}
                   data-testid="nav-search-link"
+                 
                 >
                   Buscar
                 </LocalizedClientLink>
@@ -60,6 +86,7 @@ export default async function Nav() {
                 className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
+                
               >
                 Cuenta
               </LocalizedClientLink>

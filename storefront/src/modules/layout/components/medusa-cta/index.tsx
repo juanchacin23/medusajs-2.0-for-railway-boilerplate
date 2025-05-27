@@ -4,7 +4,7 @@ import { HiOutlineMail } from "react-icons/hi"
 
 const MedusaCTA = () => {
   return (
-    <div className="flex gap-x-2 txt-compact-small-plus items-center">
+    <div className="flex gap-x-2 txt-compact-small-plus items-center justify-center sm:justify-normal">
       <a
         href="tel:+17866201407"
         target="_blank"

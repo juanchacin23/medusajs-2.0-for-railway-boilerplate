@@ -85,7 +85,7 @@ const CartDropdown = ({
             
           >
             
-              <HiOutlineShoppingBag size={20}/>
+              <HiOutlineShoppingBag size={17}/>
 
             {totalItems > 0 && (
 
