@@ -89,7 +89,7 @@ const CartDropdown = ({
 
             {totalItems > 0 && (
 
-              <span className="absolute top-[-3px] right-0 transform 
+              <span className="absolute top-0 right-0 transform 
               translate-x-1/2 -translate-y-1/2 
               bg-red-500 text-white
               text-xs
