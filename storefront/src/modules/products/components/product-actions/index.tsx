@@ -114,10 +114,19 @@ export default function ProductActions({
     setIsAdding(true)
 
     try {
-      await addToCart({ variantId: selectedVariant.id, quantity: desiredQty, countryCode })
+      await addToCart({
+        variantId: selectedVariant.id,
+        quantity: 1,
+        countryCode,
+      })
     } catch (err: any) {
-      // NEW: capture API errors
-      setError(err.message)
+      
+      const msg = err.message.toLowerCase()
+      if (msg.includes("stock") || msg.includes("inventory")) {
+        setError("Lo siento, ya no queda stock disponible.")
+      } else {
+        setError("Error al añadir al carrito. Por favor inténtalo de nuevo.")
+      }
     } finally {
       setIsAdding(false)
     }
