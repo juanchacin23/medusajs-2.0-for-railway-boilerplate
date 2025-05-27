@@ -13,6 +13,8 @@ import MobileActions from "./mobile-actions"
 import ProductPrice from "../product-price"
 import { addToCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+import ErrorMessage from "@modules/checkout/components/error-message"
+
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -36,6 +38,7 @@ export default function ProductActions({
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const countryCode = useParams().countryCode as string
 
   // If there is only 1 variant, preselect the options
@@ -97,15 +100,28 @@ export default function ProductActions({
   const handleAddToCart = async () => {
     if (!selectedVariant?.id) return null
 
+    setError(null)
+
+    // NEW: determine available stock
+    const stock = selectedVariant.manage_inventory ? (selectedVariant.inventory_quantity ?? 0) : Infinity
+    const desiredQty = 1
+    // NEW: prevent over-ordering
+    if (desiredQty > stock) {
+      setError(`Only ${stock} in stock`)
+      return
+    }
+
     setIsAdding(true)
 
-    await addToCart({
-      variantId: selectedVariant.id,
-      quantity: 1,
-      countryCode,
-    })
+    try {
+      await addToCart({ variantId: selectedVariant.id, quantity: desiredQty, countryCode })
+    } catch (err: any) {
+      // NEW: capture API errors
+      setError(err.message)
+    } finally {
+      setIsAdding(false)
+    }
 
-    setIsAdding(false)
   }
 
   return (
@@ -149,6 +165,11 @@ export default function ProductActions({
             ? "Out of stock"
             : "Add to cart"}
         </Button>
+
+         {/* NEW: display error below button */}
+        {error && <ErrorMessage error={error} />}
+
+
         <MobileActions
           product={product}
           variant={selectedVariant}
