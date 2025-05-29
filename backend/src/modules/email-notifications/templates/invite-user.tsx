@@ -39,25 +39,25 @@ export const InviteUserEmail = ({
     <Base preview={preview}>
       <Section className="mt-[32px]">
         <Img
-          src="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg"
+          src="https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/logo.svg"
           alt="Medusa"
           className="mx-auto w-28"
         />
       </Section>
       <Section className="text-center">
         <Text className="text-black text-[14px] leading-[24px]">
-          You&apos;ve been invited to be an administrator on <strong>Medusa</strong>.
+          Te han invitado a ser administrador en <strong>Deuce</strong>.
         </Text>
         <Section className="mt-4 mb-[32px]">
           <Button
             className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline px-5 py-3"
             href={inviteLink}
           >
-            Accept Invitation
+            Aceptar invitación
           </Button>
         </Section>
         <Text className="text-black text-[14px] leading-[24px]">
-          or copy and paste this URL into your browser:
+          o copia y pega el siguiente enlace en tu navegador:
         </Text>
         <Text style={{
           maxWidth: '100%',
@@ -74,16 +74,16 @@ export const InviteUserEmail = ({
       </Section>
       <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
       <Text className="text-[#666666] text-[12px] leading-[24px]">
-        If you were not expecting this invitation, you can ignore this email, as the
-        invitation will expire in 24 hours. If you are concerned about your account's safety,
-        please reply to this email to get in touch with us.
+       Si no esperabas esta invitación, puedes ignorar este correo electrónico, ya que la invitación expirará en 24 horas. 
+       Si te preocupa la seguridad de tu cuenta, responde a este correo para ponerte en contacto con nosotros.
       </Text>
     </Base>
   )
 }
 
 InviteUserEmail.PreviewProps = {
-  inviteLink: 'https://mywebsite.com/app/invite?token=abc123ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'
+  inviteLink: '`${BACKEND_URL}/app/invite?token=${invite.token}`'
 } as InviteUserEmailProps
+
 
 export default InviteUserEmail
