@@ -51,7 +51,7 @@ export default async function Nav() {
                   className="hover:text-ui-fg-base"
                   data-testid="nav-search-link"
                 >
-                  <MagnifyingGlass className="mr-1.5"/>
+                  <MagnifyingGlass className="mr-2"/>
                 </LocalizedClientLink>
               )}
               <LocalizedClientLink
@@ -60,7 +60,7 @@ export default async function Nav() {
                 className="hover:text-ui-fg-base"
                 data-testid="nav-account-link"
               >
-                <User className="mr-1.5"/>
+                <User className="mr-2"/>
               </LocalizedClientLink>
             </div>
 
