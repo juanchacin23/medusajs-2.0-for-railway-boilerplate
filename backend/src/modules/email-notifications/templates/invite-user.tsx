@@ -19,6 +19,8 @@ export interface InviteUserEmailProps {
    * in mail providers like Gmail
    */
   preview?: string
+
+  logoUrl: string 
 }
 
 /**
@@ -26,7 +28,7 @@ export interface InviteUserEmailProps {
  * @param data - The data to check
  */
 export const isInviteUserData = (data: any): data is InviteUserEmailProps =>
-  typeof data.inviteLink === 'string' && (typeof data.preview === 'string' || !data.preview)
+  typeof data.inviteLink === 'string' && (typeof data.preview === 'string' || !data.preview) && typeof data.logoUrl === 'string'
 
 /**
  * The InviteUserEmail template component built with react-email
@@ -34,8 +36,9 @@ export const isInviteUserData = (data: any): data is InviteUserEmailProps =>
 export const InviteUserEmail = ({
   inviteLink,
   preview = `Invitación para panel de admin de Deuce!`,
+  logoUrl,
 }: InviteUserEmailProps) => {
-  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL!
+  
   return (
     <Base preview={preview}>
       <Section className="mt-[32px]">
@@ -83,7 +86,10 @@ export const InviteUserEmail = ({
 }
 
 InviteUserEmail.PreviewProps = {
-  inviteLink: '`${BACKEND_URL}/app/invite?token=${invite.token}`'
+  inviteLink: '`${BACKEND_URL}/app/invite?token=${invite.token}`',
+  preview: 'Invitación para panel de admin de Deuce desde el preview!',
+  logoUrl: 'https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/logo.svg',
+
 } as InviteUserEmailProps
 
 

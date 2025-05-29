@@ -26,7 +26,8 @@ export default async function userInviteHandler({
           subject: "Tu estas siendo invitado a Deuce!"
         },
         inviteLink: `${BACKEND_URL}/app/invite?token=${invite.token}`,
-        preview: 'The administration dashboard awaits...'
+        preview: 'El panel de administración te espera...',
+        logoUrl: process.env.BACKEND_LOGO_URL!,
       }
     })
   } catch (error) {

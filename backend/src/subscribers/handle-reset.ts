@@ -35,11 +35,11 @@ export default async function resetPasswordTokenHandler({
     data: {
       emailOptions: {
         replyTo: 'info@deucepadelshop.com',
-        subject: "Restablecer contraseña backend!" 
+        subject: "Restablecer contraseña del admin!" 
       },
       // a URL to a frontend application
       resetLink,
-      preview: 'The administration dashboard awaits...',
+      preview: 'Haz clic para recuperar el acceso a tu cuenta',
       email,
     },
   }) 

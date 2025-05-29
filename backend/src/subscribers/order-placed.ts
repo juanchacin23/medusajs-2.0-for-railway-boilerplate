@@ -21,11 +21,11 @@ export default async function orderPlacedHandler({
       data: {
         emailOptions: {
           replyTo: 'info@example.com',
-          subject: 'Your order has been placed'
+          subject: 'Tu pedido ha sido realizado'
         },
         order,
         shippingAddress,
-        preview: 'Thank you for your order!'
+        preview: '¡Gracias por tu pedido!'
       }
     })
   } catch (error) {
