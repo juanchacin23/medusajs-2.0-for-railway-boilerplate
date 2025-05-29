@@ -33,14 +33,15 @@ export const isInviteUserData = (data: any): data is InviteUserEmailProps =>
  */
 export const InviteUserEmail = ({
   inviteLink,
-  preview = `You've been invited to Medusa!`,
+  preview = `Invitación para panel de admin de Deuce!`,
 }: InviteUserEmailProps) => {
+  const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL!
   return (
     <Base preview={preview}>
       <Section className="mt-[32px]">
         <Img
-          src="https://bucket-production-f8f9.up.railway.app/medusa-media/static-assets/logo.svg"
-          alt="Medusa"
+          src={logoUrl}
+          alt="Deuce"
           className="mx-auto w-28"
         />
       </Section>
