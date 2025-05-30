@@ -27,7 +27,6 @@ export default async function userInviteHandler({
         },
         inviteLink: `${BACKEND_URL}/app/invite?token=${invite.token}`,
         preview: 'El panel de administración te espera...',
-        logoUrl: process.env.BACKEND_LOGO_URL!,
       }
     })
   } catch (error) {
